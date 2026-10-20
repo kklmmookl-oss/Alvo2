@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>My bills</title>
+<style>
+:root{--bg:#000;--cd:#0a0a0a;--ln:#242424;--tx:#fff;--mu:#8a94a8;--pu:#7c2dff;color-scheme:dark}
+:root.l{--bg:#f3f4f8;--cd:#fff;--ln:#dcdfea;--tx:#10131f;--mu:#5f6880;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,"Noto Sans Arabic",Tahoma,sans-serif;padding-bottom:100px}
+.w{max-width:620px;margin:auto;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:18px}
+.top h2{font-size:30px;line-height:1.2}.top small{color:var(--mu);font-size:18px;display:block}
+.tb{display:flex;gap:8px;flex-wrap:wrap}
+.ib{min-width:52px;height:52px;border:1px solid var(--ln);background:none;color:var(--tx);border-radius:26px;font:inherit;cursor:pointer;padding:0 14px}
+.ib.x{color:#ff4d5e;border-color:#6b2029}.ib.on{background:var(--pu);border-color:var(--pu);color:#fff}
+.cd{background:var(--cd);border:1px solid var(--ln);border-radius:30px;padding:22px;margin-bottom:16px}
+.cd h3{font-size:24px;margin-bottom:8px}.mu{color:var(--mu)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rw{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pt{font-size:30px;margin:6px 0 16px}.em{text-align:center;padding:40px}
+.st{border-radius:30px;padding:20px;border:1px solid}
+.st i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;font-style:normal;margin-bottom:8px;background:rgba(255,255,255,.1)}
+.st b{display:block;font-size:24px}
+.c1{background:#021a10;border-color:#0f4d33;color:#6ee7b7}.c2{background:#1a0508;border-color:#5a1a24;color:#fda4af}
+.c3{background:#02121c;border-color:#0c3d57;color:#7dd3fc}.c4{background:#1c1302;border-color:#5a4510;color:#fcd34d}
+input,textarea,select{width:100%;background:var(--bg);border:1px solid var(--ln);color:var(--tx);border-radius:26px;padding:15px 18px;font:inherit;margin:6px 0 12px}
+label{display:block;margin-top:6px}.fl{border:1px dashed var(--ln);border-radius:26px;padding:16px;margin-bottom:12px}.fl input{border:0;padding:6px 0;margin:0}
+.bt{display:block;width:100%;background:none;border:1px solid var(--ln);color:var(--tx);border-radius:30px;padding:16px;font:inherit;cursor:pointer;margin-bottom:12px}
+.bt.p{background:var(--pu);border-color:var(--pu);color:#fff}.bt.s2{background:#334155;border-color:#334155;color:#fff}
+.hero{background:linear-gradient(135deg,#0b1020,#041a14)}.hero h1{font-size:34px;line-height:1.3;margin:8px 0}
+.ch span{border:1px solid var(--ln);border-radius:30px;padding:6px 16px;display:inline-block;margin:10px 6px 0 0}
+.pc{border:1px solid var(--ln);border-radius:26px;overflow:hidden;background:var(--cd);cursor:pointer}.pb{padding:14px}
+.pr{font-size:26px;font-weight:800;color:#2cb7ff}.pr small{font-size:14px}.pu{color:#a78bfa;font-weight:800;font-size:20px}
+.pl{width:48px;height:48px;border-radius:16px;border:0;background:#2cb7ff;color:#fff;font-size:26px;cursor:pointer}
+.bal{background:linear-gradient(135deg,#4b1fa8,#1d0b45);border:0;color:#fff}.bal b{display:block;font-size:34px}
+.rk{display:flex;gap:16px;align-items:center}.rk b{display:block;font-size:28px}
+.ic{width:68px;height:68px;border-radius:24px;display:grid;place-items:center;font-size:28px}
+.b1{background:#0a2a3d}.b2{background:#3a2a08}.b3{background:#0b3a2a}
+.cb{display:flex;align-items:center;gap:8px;justify-content:center;background:var(--b);border-color:var(--c);color:var(--t);margin:0}
+.k1{--b:#072a1c;--c:#0f5a3a;--t:#5eead4}.k2{--b:#07243a;--c:#0c4a6e;--t:#fff}.k3{--b:#1b1636;--c:#3b2f7a;--t:#c4b5fd}
+.k4{--b:#2a1706;--c:#7a3f0c;--t:#fdba74}.k5{--b:#15171c;--c:#2a2e38;--t:#e5e7eb}.k6{--b:#052a30;--c:#0e5560;--t:#67e8f9}
+.tg{font-size:12px;border:1px solid;border-radius:20px;padding:0 10px}.new{color:#fcd34d}.done{color:#6ee7b7}.cancel{color:#fda4af}
+.kp{width:100%;border-radius:14px;margin:8px 0}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:20}
+#dr{position:fixed;top:0;bottom:0;right:0;width:78%;max-width:340px;background:#111731;color:#fff;padding:20px;transform:translateX(100%);transition:.25s;z-index:21;overflow:auto}
+#dr a{display:flex;gap:14px;padding:16px;border-radius:26px;margin-bottom:6px;cursor:pointer;font-size:18px}#dr a.on{background:#2b2152}
+body.o #dr{transform:none}body.o #ov{display:block}
+.wa{position:fixed;bottom:22px;left:18px;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:30px;text-decoration:none;z-index:10}
+#say{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--pu);color:#fff;padding:10px 22px;border-radius:26px;opacity:0;transition:.25s;pointer-events:none;z-index:30}#say.on{opacity:1}
+@media print{.np,.wa,#dr,#ov{display:none!important}body{background:#fff;color:#000}.cd{background:#fff;border-color:#999}}
+textarea{border-radius:20px;resize:vertical}select{padding:12px 16px;width:auto}
+.er{color:#ff6b7a;font-size:14px;min-height:22px;margin:-6px 0 6px}
+.pl.s{width:36px;height:36px;font-size:20px}.cd p{white-space:pre-wrap}
+.wait{color:#93c5fd}.contacted{color:#a5b4fc}.proc{color:#fdba74}
+button:disabled{opacity:.45;cursor:not-allowed}
+</style>
+</head>
+<body>
+<div id="app"></div><div id="say"></div>
+<script>
+const WA='201515510363';
+const AD=['7b9ed663ca1fa2d29a683590c9410e913cb0aab3e322e02366d547b06d288bb6','add4af81c713906fe55b70277bdbd8888b9468ba43eb0c29d6dca67a22c59810']; // بصمات بيانات حسابي الأدمن (بدون كلمات مرور صريحة)
+const STORE='AMORE STORE';
+const LK={play:'',mail:''}; // ضع رابط Google Play والبريد هنا
+const FB={}; // الصق إعدادات Firebase هنا ليعمل الحفظ السحابي المشترك، وإلا يُحفظ على هذا الجهاز فقط
+// المنتجات: t/s نص الصورة، h درجة اللون، img رابط صورة اختياري
+const DEF=[{id:'p1',g:'PUBG Mobile',n:'UC 30',pr:30,t:'30',s:'UC',h:35},{id:'p2',g:'PUBG Mobile',n:'UC 45',pr:35,t:'45',s:'UC',h:215}];
+let P=[...DEF],GS={},NW=[];
+const R=[{id:'r1',n:'75 شدة',c:15,t:'75',s:'شدة',h:215},{id:'r2',n:'120 شدة',c:30,t:'120',s:'شدة',h:270},{id:'r3',n:'1800 شدة',c:50,t:'1800',s:'شدة',h:35},{id:'r4',n:'1000 ج.م على المحفظة',c:40,t:'1000',s:'ج.م كاش',h:140}];
+const TR=[['ذهبي',1000],['فضي',500],['برونزي',100]]; // حدود التصنيف الشهري (السنوي ×10)
+const ST={wait:'في انتظار تأكيد العميل عبر واتساب',new:'جديد',contacted:'تم التواصل مع العميل',proc:'قيد التنفيذ',done:'مكتمل',cancel:'ملغي'};
+const $=s=>document.querySelector(s),mem={};
+const L=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){if(v===undefined)return mem[k];mem[k]=v}};
+const H=async s=>{try{return[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('mybills|'+s)))].map(b=>b.toString(16).padStart(2,'0')).join('')}catch(e){return'x'+s}};
+const n=x=>(+x||0).toLocaleString('en-US')+' ج.م';
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const say=m=>{const e=$('#say');e.textContent=m;e.className='on';setTimeout(()=>e.className='',2200)};
+const sm=(a,f)=>a.reduce((s,o)=>s+(+o[f]||0),0);
+let S={r:null,id:null,me:null,orders:[],cust:[],v:'home',cart:{},pids:{},no:'',dv:'news'},fs,F;
+const DB={
+ async init(){if(!FB.projectId)return;try{const a=await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');F=await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');fs=F.getFirestore(a.initializeApp(FB))}catch(e){say('تعذر الاتصال بـ Firebase')}},
+ async all(c){if(fs)return(await F.getDocs(F.collection(fs,c))).docs.map(d=>({...d.data(),id:d.id}));return Object.entries(L(c)||{}).map(([id,v])=>({...v,id}))},
+ async one(c,id){if(fs){const d=await F.getDoc(F.doc(fs,c,id));return d.exists()?{...d.data(),id}:null}const t=L(c)||{};return t[id]?{...t[id],id}:null},
+ async q(c,k,v){if(fs)return(await F.getDocs(F.query(F.collection(fs,c),F.where(k,'==',v)))).docs.map(d=>({...d.data(),id:d.id}));return(await DB.all(c)).filter(x=>x[k]==v)},
+ async del(c,id){if(fs)return F.deleteDoc(F.doc(fs,c,id));const t=L(c)||{};delete t[id];L(c,t)},
+ async set(c,id,o){if(fs)return F.setDoc(F.doc(fs,c,id),o,{merge:true});const t=L(c)||{};t[id]={...t[id],...o};L(c,t)}
+};
+const art=(t,s,h)=>`<svg viewBox="0 0 200 130" style="display:block;width:100%"><rect width="200" height="130" fill="hsl(${h},70%,24%)"/><circle cx="165" cy="25" r="55" fill="hsl(${h},80%,40%)" opacity=".5"/><circle cx="30" cy="125" r="45" fill="#000" opacity=".25"/><text x="100" y="74" font-size="${t.length>3?40:50}" font-weight="900" fill="#ffd54a" text-anchor="middle">${t}</text><text x="100" y="106" font-size="18" fill="#fff" text-anchor="middle">${s}</text></svg>`;
+const pic=p=>p.img?`<img src="${esc(p.img)}" alt="" style="display:block;width:100%">`:art(esc(p.t||p.n.slice(0,6)),esc(p.s||p.g.slice(0,12)),p.h||200);
+const live=()=>S.orders.filter(o=>!['cancel','wait'].includes(o.status)&&o.type!='points');
+const fin=()=>{const s=sm(live(),'total'),p=sm(live(),'paid');return{s,p,cr:Math.max(0,p-s),db:Math.max(0,s-p)}};
+const tier=(v,k)=>(TR.find(t=>v>=t[1]*k)||['غير مصنف'])[0];
+const chk=(g,v)=>{v=String(v||'');if(!v)return'من فضلك أدخل Player ID الخاص بك';const l=+((GS[g]||{}).len)||0;return!/^\d+$/.test(v)||(l&&v.length!=l)?'خطأ في الرقم، تأكد من Player ID وحاول مرة أخرى':''};
+const rl=g=>+((GS[g]||{}).len)?` (${GS[g].len} أرقام)`:'';
+const cg=()=>{const m={};for(const[i,q]of Object.entries(S.cart)){const p=P.find(x=>x.id==i);if(p)(m[p.g]=m[p.g]||{g:p.g,it:[]}).it.push({p,q})}return Object.values(m)};
+const tot=()=>cg().reduce((s,x)=>s+x.it.reduce((a,y)=>a+y.p.pr*y.q,0),0);
+const mkNo=()=>'AM-'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).toUpperCase().slice(2,4);
+const games=()=>[...new Set(P.map(p=>p.g))];
+const det=o=>o.lines?o.lines.map(l=>`🎮 ${esc(l.g)} · ${esc(l.n)} × ${l.q} · 🆔 ${esc(l.pid)}`).join('<br>'):esc((o.items||[]).join('، '))+(o.pid?' · ID: '+esc(o.pid):'');
+const msg=o=>['🛒 طلب شحن جديد - '+STORE,'','رقم الطلب: '+o.no,'',...o.lines.flatMap(l=>['🎮 اللعبة: '+l.g,'📦 الباقة: '+l.n,'🔢 الكمية: '+l.q,'🆔 Player ID: '+l.pid,'']),'💰 إجمالي الطلب: '+o.total+' ج.م','','👤 اسم العميل: '+o.cname,'📱 رقم العميل: '+o.cid,'','أرجو تأكيد الطلب وإخباري بطريقة إتمام الشحن.','','شكرًا لاستخدام '+STORE+' ❤️'].join('\n');
+const teaser=()=>NW.length?`<div class="cd" style="cursor:pointer" onclick="A.go('news')"><small class="mu">📰 آخر الأخبار</small><br><b>${esc(NW[0].t)}</b></div>`:'';
+const img=f=>new Promise(r=>{if(!f)return r('');const i=new Image;i.onload=()=>{const k=Math.min(1,700/i.width),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.6))};i.src=URL.createObjectURL(f)});
+const V={
+ home(){const f=fin();return teaser()+'<div class="g2">'+[['c1','📈','إجمالي المبيعات',f.s],['c2','👛','إجمالي المدفوعات',f.p],['c3','🤝','ليك فلوس',f.cr],['c4','⚠️','الديون المستحقة',f.db]].map(([c,i,l,v])=>`<div class="st ${c}"><i>${i}</i><div>${l}</div><b>${n(v)}</b></div>`).join('')+`</div><button class="bt" style="width:55%;margin:18px 0 12px" onclick="A.go('debts')">🗂 سجل الديون</button><button class="bt" onclick="A.stmt()">📄 كشف الحساب PDF</button>`},
+ shop(){return`<div class="cd hero"><b style="color:#22c55e">AMORE STORE</b><h1>شحن ألعابك بسرعة ووضوح</h1><p class="mu">اختر اللعبة، أضف المنتج للسلة، وأكمل طلبك بخطوات بسيطة.</p><div class="ch"><span>دفع آمن</span><span>تنفيذ سريع</span><span>دعم واتساب</span></div></div><div class="g2">`+P.map(p=>`<div class="pc">${pic(p)}<div class="pb"><b>${p.g} · ${p.n}</b><div class="rw"><span class="pr">${p.pr} <small>ج.م</small></span><button class="pl" onclick="A.add('${p.id}')">+</button></div></div></div>`).join('')+`</div><button class="bt p" style="margin-top:16px" onclick="A.go('cart')">🛒 السلة (${Object.keys(S.cart).length})</button>`},
+ cart(){const g=cg();S.no=S.no||mkNo();if(!g.length)return`<div class="cd em">🛒<br><b>السلة فارغة</b></div><button class="bt" onclick="A.go('shop')">← العودة إلى المتجر</button>`;return`<div class="cd"><div class="rw"><h3>🛒 مراجعة الطلب</h3><b dir="ltr">${S.no}</b></div>`+g.map((x,i)=>`<div class="cd" style="background:var(--bg)"><b>🎮 ${esc(x.g)}</b>`+x.it.map(({p,q})=>`<div class="rw" style="padding:6px 0"><span>${esc(p.n)} · ${n(p.pr)}</span><span class="rw"><button class="pl s" onclick="A.del('${p.id}')">−</button><b>${q}</b><button class="pl s" onclick="A.add('${p.id}',1)">+</button><b>${n(p.pr*q)}</b></span></div>`).join('')+`<label>Player ID${rl(x.g)}</label><input id="pid_${i}" inputmode="numeric" autocomplete="off" value="${esc(S.pids[x.g]||'')}" oninput="A.vp(${i})"><div class="er" id="er_${i}">${chk(x.g,S.pids[x.g])}</div></div>`).join('')+`<div class="rw" style="margin:12px 0"><b>الإجمالي</b><b>${n(tot())}</b></div><button class="bt p" id="snd" onclick="A.send()"${g.some(x=>chk(x.g,S.pids[x.g]))?' disabled':''}>إرسال الطلب عبر واتساب</button><button class="bt" onclick="A.go('shop')">← العودة إلى المتجر</button></div>`},
+ rank(){const d=new Date().toISOString(),m=sm(live().filter(o=>new Date(o.ts).toISOString().slice(0,7)==d.slice(0,7)),'paid'),y=sm(live().filter(o=>new Date(o.ts).toISOString().slice(0,4)==d.slice(0,4)),'paid');return'<h2 class="pt">التصنيفات</h2>'+[['📅','التصنيف الشهري',tier(m,1),'حسب مدفوعات الشهر الحالي','b1'],['🏆','التصنيف السنوي',tier(y,10),'','b2'],['🪙','إجمالي نقاط العميل',S.me.pts||0,'','b3']].map(([i,l,v,s,c])=>`<div class="cd rk"><span class="ic ${c}">${i}</span><div><small class="mu">${l}</small><b>${v}</b>${s?`<small class="mu">${s}</small>`:''}</div></div>`).join('')},
+ kyc(){const k=S.me.kyc||{};return`<div class="cd"><h3>التحقق من الهوية</h3>`+(k.st?`<p class="mu">الحالة: <b>${k.st=='ok'?'✅ تم التحقق':'⏳ قيد المراجعة'}</b></p>`:'')+`<label>الاسم الرباعي</label><input id="k1" value="${esc(k.nm)}"><label>الرقم القومي</label><input id="k2" inputmode="numeric" maxlength="14" value="${esc(k.nid)}"><label>تاريخ الميلاد</label><input id="k3" type="date" value="${esc(k.dob)}"><label>العنوان</label><input id="k4" value="${esc(k.ad)}"><label>الوظيفة</label><input id="k5" value="${esc(k.job)}"><label class="fl">صورة وجه البطاقة<input id="k6" type="file" accept="image/*"></label><label class="fl">صورة ظهر البطاقة<input id="k7" type="file" accept="image/*"></label><button class="bt p" onclick="A.kyc()">إرسال للتحقق</button></div>`},
+ inv(d){const a=S.orders.filter(o=>o.type!='points'&&o.status!='cancel'&&(!d||(o.status!='wait'&&o.total>o.paid)));return`<div class="rw"><h2 class="pt">${d?'سجل الديون':'فواتير المبيعات'}</h2><button class="ib np" onclick="A.go('home')">رجوع</button></div>`+(a.length?a.map(o=>`<div class="cd"><div class="rw"><b dir="ltr">${esc(o.no||'#'+o.id.slice(-5))}</b><span class="tg ${o.status}">${ST[o.status]}</span></div><div class="mu">${esc(o.items.join('، '))}</div><div class="rw"><span>${new Date(o.ts).toLocaleDateString('en-GB')}</span><b>${n(o.total)}</b></div><div class="mu">المدفوع ${n(o.paid)} · المتبقي ${n(o.total-o.paid)}</div></div>`).join(''):`<div class="cd em">🧾<br><b>لا توجد ${d?'ديون':'فواتير مبيعات'}</b></div>`)},
+ debts(){return V.inv(1)},
+ news(){return'<h2 class="pt">الأخبار</h2>'+(NW.length?NW.map(x=>`<div class="cd">${x.i?`<img class="kp" src="${esc(x.i)}" alt="" style="margin:0 0 12px">`:''}<h3>${esc(x.t)}</h3><div class="mu">${new Date(x.ts).toLocaleDateString('en-GB')}</div><p>${esc(x.b)}</p></div>`).join(''):'<div class="cd em">📰<br>لا توجد أخبار حاليًا</div>')},
+ dev(){const t=S.dv||'news';let h='<h2 class="pt">لوحة المطور</h2><div class="tb" style="margin-bottom:16px">'+[['news','📰 الأخبار'],['prod','📦 المنتجات والصور'],['rules','🔢 قواعد Player ID']].map(([k,l])=>`<button class="ib ${t==k?'on':''}" onclick="A.dv('${k}')">${l}</button>`).join('')+'</div>';
+  if(t=='news')h+=`<div class="cd"><h3>نشر خبر</h3><input id="nt" placeholder="عنوان الخبر"><textarea id="nb" rows="4" placeholder="نص الخبر"></textarea><label class="fl">صورة الخبر (اختياري)<input id="ni" type="file" accept="image/*"></label><button class="bt p" onclick="A.news()">نشر الخبر</button></div>`+(NW.length?NW.map(x=>`<div class="cd"><b>${esc(x.t)}</b><div class="mu">${new Date(x.ts).toLocaleDateString('en-GB')}</div>${x.i?`<img class="kp" src="${esc(x.i)}" alt="">`:''}<p>${esc(x.b)}</p><button class="ib x" onclick="A.nd('${x.id}')">حذف</button></div>`).join(''):'<div class="cd em">لا توجد أخبار منشورة</div>');
+  else if(t=='prod')h+=`<div class="cd"><h3>إضافة منتج</h3><input id="pg" placeholder="اسم اللعبة (مثال: PUBG Mobile)"><input id="pn" placeholder="اسم الباقة (مثال: UC 60)"><input id="pp" type="number" min="1" placeholder="السعر بالجنيه"><label class="fl">صورة المنتج (اختياري)<input id="pi" type="file" accept="image/*"></label><button class="bt p" onclick="A.padd()">إضافة المنتج</button></div>`+P.map(p=>`<div class="cd rw"><div><b>${esc(p.g)} · ${esc(p.n)}</b><div class="mu">${n(p.pr)}</div></div><div class="tb"><button class="ib" onclick="A.pprice('${p.id}')">✎ السعر</button><button class="ib x" onclick="A.pdel('${p.id}')">حذف</button></div></div>`).join('');
+  else h+=games().map((g,i)=>`<div class="cd"><b>${esc(g)}</b><div class="mu">${+(GS[g]||{}).len?'✅ مؤكد: '+GS[g].len+' أرقام':'⚠️ غير مؤكد: تُقبل أرقام فقط بدون فرض طول حتى تؤكد القاعدة'}</div><input id="gl_${i}" type="number" min="0" placeholder="عدد أرقام Player ID (0 = غير مؤكد)" value="${+(GS[g]||{}).len||''}"><button class="bt p" onclick="A.rule(${i})">حفظ</button></div>`).join('')||'<div class="cd em">أضف منتجًا أولًا</div>';
+  return h},
+ pstore(){return`<h2 class="pt">متجر النقاط</h2><div class="cd bal"><small>رصيد نقاطك</small><b>${S.me.pts||0}</b></div><div class="g2">`+R.map(r=>`<div class="pc" onclick="A.redeem('${r.id}')">${pic(r)}<div class="pb"><b>${r.n}</b><div class="pu">${r.c} نقطة</div></div></div>`).join('')+'</div>'},
+ prof(){return`<div class="cd"><h3>بيانات العميل</h3><p class="mu">الملف الشخصي</p><div class="cd rw"><div><b>الإشعارات</b><div class="mu">${L('mb_n')===false?'متوقفة':'مفعلة'}</div></div><button class="ib" onclick="A.notif()">🔔</button></div><div class="cd"><h3>اسم العرض</h3><input id="dn" value="${esc(S.me.name)}"><button class="bt p" onclick="A.name()">حفظ اسم العرض</button></div><div class="cd"><h3>تغيير كلمة المرور</h3><label>كلمة المرور الجديدة</label><input id="p1" type="password"><label>تأكيد كلمة المرور</label><input id="p2" type="password"><button class="bt s2" onclick="A.pass()">حفظ كلمة المرور</button></div></div>`},
+ contact(){const b=(c,i,t,a)=>`<button class="bt cb ${c}" onclick="${a}"><span>${i}</span>${t}</button>`;return`<div class="cd"><small class="mu">تواصل معنا وخدماتنا</small><h3>معلومات وتواصل</h3><div class="g2">`+b('k1','💬','تواصل معنا','A.wa()')+b('k2','▶','Google Play',"A.link('play')")+b('k3','🛠','الخدمات',"A.go('shop')")+b('k4','🎧','خدمة العملاء','A.wa()')+b('k5','📄','الشروط والأحكام','A.terms()')+b('k6','✉️','البريد الإلكتروني',"A.link('mail')")+'</div></div>'},
+ orders(){return`<h2 class="pt">الطلبات (${S.orders.length})</h2>`+(S.orders.length?S.orders.map(o=>{const p=o.type=='points';return`<div class="cd"><div class="rw"><b dir="ltr">${esc(o.no||'#'+o.id.slice(-5))}</b><span class="tg ${o.status}">${ST[o.status]||o.status}</span></div><div class="mu">👤 ${esc(o.cname)} · 📞 ${esc(o.cid)}</div><div>${det(o)}</div><div class="rw"><b>${p?o.cost+' نقطة':n(o.total)+(o.paid>=o.total?' ✅':'')}</b><span class="mu">${new Date(o.ts).toLocaleString('en-GB')}</span></div><div class="rw" style="margin-top:8px"><select onchange="A.st('${o.id}',this.value)">${Object.entries(ST).map(([k,l])=>`<option value="${k}"${k==o.status?' selected':''}>${l}</option>`).join('')}</select>${!p&&o.paid<o.total?`<button class="ib" onclick="A.ord('${o.id}','paid')">💰 تم الدفع</button>`:''}</div></div>`}).join(''):'<div class="cd em">لا توجد 
